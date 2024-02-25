@@ -1,0 +1,99 @@
+/* Home.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Permanent+Marker&family=Sixtyfour&display=swap');
+
+.home {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden; /* Prevent scrolling */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1; /* Ensure the image stays behind the content */
+}
+
+.content {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  text-align: start; /* Center the content horizontally */
+}
+
+.headline {
+  position: absolute;
+  top: 50%;
+  left: 20px; /* Adjust as needed */
+  transform: translateY(-50%);
+}
+
+.headline h3 {
+  margin: 5px 0;
+  color: aliceblue;
+  font-family: 'Inter', sans-serif;
+  font-size: 55px;
+}
+
+.header {
+  position: absolute;
+  top: -340px; /* Adjust the distance from the top as needed */
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.header h4 {
+  font-family: 'Sixtyfour', sans-serif;
+  color: #7453bf;
+  font-size: 99px;
+  margin: 0;
+}
+
+/* Style for the border box */
+.border-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 290px;
+  transform: translate(-50%, -50%);
+  background-color: #4964d2;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.border-box h2 {
+  color: #a9ddff;
+  font-size: 45px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+
+.Login, .Register {
+  top: -100px;
+  width: 100%; /* Make buttons take full width of the border box */
+  height: 50px;
+  background-color: #7453bf;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  align-items: center ;
+  flex-direction: column;
+}
+.button:last-child {
+  margin-right: 0;
+}

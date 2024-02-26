@@ -1,11 +1,25 @@
 import React from 'react';
-import '../partials/Login.css';
+import '../partials/Register.css';
+import { useNavigate } from 'react-router-dom'
+
 
 function Register() {
   return (
-    <div>
-      <h1>Register Page</h1>
-      {/* Add your registration form and logic here */}
+      <div className="border-box">
+        <h2>Create New Account</h2>
+        <div className="input-name">
+          <input type="name" placeholder="name" />
+          <div className="input-Last-Name">
+          <input type="Name" placeholder="LastName" />
+          <div className="input-box">
+          <input type="email" placeholder="Email" />
+          <div className="input-box">
+          <input type="password" placeholder="Password" />
+
+        </div>
+        </div>
+        </div>
+        </div>
     </div>
   );
 }

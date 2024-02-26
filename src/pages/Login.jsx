@@ -1,11 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'
 import '../partials/Login.css';
 
 function Login() {
-  // Function to handle login action
+    const navigate = useNavigate()
   const handleLogin = () => {
-    // Add your login logic here, such as sending a request to your backend server
     console.log("Login button clicked");
+    navigate("/homepage");
   };
 
   return (

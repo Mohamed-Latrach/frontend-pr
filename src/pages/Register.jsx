@@ -1,27 +1,63 @@
-import React from 'react';
-import '../partials/Register.css';
-import { useNavigate } from 'react-router-dom'
-
+import React, { useState } from 'react';
+import styles from '../partials/Register.module.css'; // Import CSS module
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
-  return (
-      <div className="border-box">
-        <h2>Create New Account</h2>
-        <div className="input-name">
-          <input type="name" placeholder="name" />
-          <div className="input-Last-Name">
-          <input type="Name" placeholder="LastName" />
-          <div className="input-box">
-          <input type="email" placeholder="Email" />
-          <div className="input-box">
-          <input type="password" placeholder="Password" />
+  const [name, setName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [birthdate, setBirthdate] = useState('');
+  const [gender, setGender] = useState(''); 
 
-        </div>
-        </div>
-        </div>
-        </div>
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Submitted data:', { name, lastName, email, password, birthdate, gender });
+    navigate('/success');
+  };
+
+  return (
+    <div>
+      <div className={styles.backgroundImage}>
+        <img src="/behance-64ca96ed5caf7.png" alt="Description of the image" className={styles.backgroundImage} />
+      </div>
+      <div className={styles.borderBox}>
+        <h2>Create New Account</h2>
+        <form onSubmit={handleSubmit}>
+          <div className={styles.inputRow}>
+            <div className={styles.inputName}>
+              <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
+            </div>
+            <div className={styles.inputLastName}>
+              <input type="text" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+            </div>
+          </div>
+          <div className={styles.inputBox}>
+            <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          </div>
+          <div className={styles.inputBox}>
+            <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          </div>
+          {/* Birthday Picker */}
+          <div className={styles.inputBox}>
+            <label htmlFor="birthdate">Birthday:</label>
+            <input type="date" id="birthdate" value={birthdate} onChange={(e) => setBirthdate(e.target.value)} />
+          </div>
+          {/* Gender Selector */}
+          <div className={styles.inputBox}>
+            <label htmlFor="gender">Gender:</label>
+            <select id="gender" value={gender} onChange={(e) => setGender(e.target.value)}>
+              <option value="">Select gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+          <button type="submit" className={styles.button}>Register</button>
+        </form>
+      </div>
     </div>
   );
 }
-
-export default Register; // Ensure you export the component as default
+export default Register;

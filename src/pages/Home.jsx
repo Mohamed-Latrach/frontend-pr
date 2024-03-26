@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import styles from '../partials/Home.module.css'; // Import CSS module for Home styles
+import styles from '../partials/Home.module.css'; 
 
 const Home = () => {
   const navigate = useNavigate();

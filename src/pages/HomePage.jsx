@@ -1,12 +1,20 @@
-import React from 'react';
+import React from "react";
+import Sidebar from "../components/Sidebar";
+import "../partials/HomePage.module.css";
 
-function HomePage() {
-  return (
-    <div>
-      <h1>Welcome to the Home Page</h1>
-      {/* Add your other components and content here */}
-    </div>
-  );
-}
+const HomePage = () => {
+
+    const SidebarItems = [
+        { path: "/", icon: "Icon1", title: "Title1" },
+        { path: "/about", icon: "Icon2", title: "Title2" },
+        { path: "/contact", icon: "Icon3", title: "Title3" },
+    ];
+
+    return (
+        <div>
+            <Sidebar items={SidebarItems} />
+        </div>
+    );
+};
 
 export default HomePage;

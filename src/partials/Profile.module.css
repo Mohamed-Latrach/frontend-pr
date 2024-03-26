@@ -1,0 +1,37 @@
+/* Profile.module.css */
+
+.border-box {
+    position: absolute;
+    top: 10%;
+    left: 40%;
+    width: 520px;
+    height: 45px; /* This height seems too small for the content */
+    transform: translate(-50%, -50%);
+    background-color: #28274d;
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .border-box h2 {
+    font-size: 20px;
+    font-family: Tahoma, Helvetica, sans-serif, Arial;
+    margin-right: 10px;
+    color: aliceblue;
+  }
+  
+  .border-box button {
+    margin-left: auto; /* This aligns the button to the right */
+    padding: 8px 16px; /* Adjust padding as needed */
+    background-color: #007bff; /* Example background color */
+    color: white; /* Example text color */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .border-box button:hover {
+    background-color: #0056b3;
+  }
+  

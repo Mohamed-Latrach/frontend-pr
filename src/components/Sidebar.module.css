@@ -1,0 +1,91 @@
+/* ↓ FROM Dynamic Sidebar HTML/CSS Workshop ↓ */
+
+:root {
+    --sidebar-width: 60px;
+  }
+  
+  .main-menu {
+    background-color: #302959;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    height: 100vh;
+    width: var(--sidebar-width);
+    overflow: hidden;
+    z-index: 1000;
+    transition: width 0.5s;
+  }
+  
+  .main-menu:hover, .main-menu li {
+    width: 200px;
+  }
+  
+  .fa {
+    width: 80px; /* Increased font-size for bigger icons */
+    height: 48px; /* Adjusted height for bigger icons */
+    text-align: center;
+    font-size: 30px; /* Adjusted font-size for bigger icons */
+    margin-top: 12px;
+    margin-bottom: 10px; /* Added margin to the bottom */
+  }
+  
+  .main-menu a {
+    display: flex;
+    align-items: center;
+    color: #999;
+    font-family: arial;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.5s;
+    margin-bottom: 10px;
+    margin-left: -30px; /* Added margin to the bottom */
+  }
+  
+  /* Hide text by default */
+  .main-menu a span {
+    display: none;
+  }
+  
+  /* Show text on hover */
+  .main-menu a:hover span {
+    display: inline;
+  }
+  
+  .main-menu a:hover {
+    background-color: lightblue;
+    color: black;
+  }
+  
+  .logout a:hover {
+    color: red;
+  }
+  
+  .main-menu .logout {
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+  }
+  
+  ul {
+    margin-top: 10px;
+    padding-left: 0;
+    list-style: none; /* Remove bullet points */
+  }
+  
+  main {
+    margin-left: var(--sidebar-width);
+    padding: 0 10px;
+  }
+  /* ↑ FROM Dynamic Sidebar HTML/CSS Workshop ↑ */
+
+  .nav-icon {
+    width: 30px; /* Increased font-size for bigger icons */
+    height: 28px; /* Adjusted height for bigger icons */
+    text-align: center;
+    font-size: 30px; /* Adjusted font-size for bigger icons */
+    margin-top: 12px;
+    margin-bottom: 10px; /* Added margin to the bottom */
+    color: rgb(255, 255, 255); /* Customize color */
+    margin-left: 17px;
+  }

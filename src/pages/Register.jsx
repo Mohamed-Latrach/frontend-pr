@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import styles from '../partials/Register.module.css'; // Import CSS module
+import styles from '../partials/Register.module.css'; 
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { registerUser } from '../store/userActions'; // Import your registerUser action creator
 
 function Register() {
   const [name, setName] = useState('');
@@ -9,13 +11,17 @@ function Register() {
   const [password, setPassword] = useState('');
   const [birthdate, setBirthdate] = useState('');
   const [gender, setGender] = useState(''); 
-
+  const dispatch = useDispatch(); // Initialize useDispatch hook
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Submitted data:', { name, lastName, email, password, birthdate, gender });
-    navigate('/success');
+    if (name.trim() === '' || lastName.trim() === '' || email.trim() === '' || password.trim() === '' || birthdate === '' || gender === '') {
+      console.log('Please fill in all required fields');
+      return;
+    }
+    dispatch(registerUser({ name, lastName, email, password, birthdate, gender }));
+    navigate('/HomePage');
   };
 
   return (

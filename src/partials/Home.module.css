@@ -6,9 +6,9 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  overflow: hidden; /* Prevent scrolling */
-  margin: 0; /* Remove default margin */
-  padding: 0; /* Remove default padding */
+  overflow: hidden; 
+  margin: 0; 
+  padding: 0; 
 }
 
 .background-image {
@@ -18,7 +18,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: -1; /* Ensure the image stays behind the content */
+  z-index: -1; 
 }
 
 .content {
@@ -26,13 +26,13 @@
   top: 50%;
   transform: translateY(-50%);
   width: 100%;
-  text-align: start; /* Center the content horizontally */
+  text-align: start; 
 }
 
 .headline {
   position: absolute;
   top: 50%;
-  left: 20px; /* Adjust as needed */
+  left: 20px; 
   transform: translateY(-50%);
 }
 
@@ -45,7 +45,7 @@
 
 .header {
   position: absolute;
-  top: -340px; /* Adjust the distance from the top as needed */
+  top: -340px;
   left: 0;
   right: 0;
   text-align: center;
@@ -58,7 +58,7 @@
   margin: 0;
 }
 
-/* Style for the border box */
+
 .border-box {
   position: absolute;
   top: 50%;
@@ -70,6 +70,10 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .border-box h2 {
@@ -79,21 +83,76 @@
   text-align: center;
 }
 
-
-.Login, .Register {
-  top: -100px;
-  width: 100%; /* Make buttons take full width of the border box */
-  height: 50px;
-  background-color: #7453bf;
-  color: #fff;
+.Login {
+  width: 19em;
+  height: 3em;
+  line-height: 2em;
+  margin-bottom: 20px;
+  text-decoration: none;
+  position: relative;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  font-size: 14px;
+  font-family: inherit;
   cursor: pointer;
-  margin-top: 10px;
-  align-items: center ;
-  flex-direction: column;
+  color: #fff;
+  background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+  background-size: 300%;
+  border-radius: 30px;
+  z-index: 1;
+  display: block; 
 }
-.button:last-child {
-  margin-right: 0;
+
+.Register {
+  width: 19em;
+  height: 3em;
+  line-height: 2em;
+  text-decoration: none;
+  position: relative;
+  border: none;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+  background-size: 300%;
+  border-radius: 30px;
+  z-index: 1;
+  display: block; 
+}
+
+
+.Login:hover, .Register:hover {
+  animation: ani 8s linear infinite;
+  border: none;
+}
+
+@keyframes ani {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 400%;
+  }
+}
+
+.Login:before, .Register:before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: -1;
+  background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+  background-size: 400%;
+  border-radius: 35px;
+  transition: 1s;
+}
+
+.Login:hover::before, .Register:hover::before {
+  filter: blur(20px);
+}
+
+.Login:active, .Register:active {
+  background: linear-gradient(32deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
 }

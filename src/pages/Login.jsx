@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { requestLogin } from '../store/userSlice'; 
+import { authenticateUser } from '../store/userSlice'; // Change import to authenticateUser
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'; 
 import styles from '../partials/Login.module.css'; 
 
-
 function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const loading = useSelector(state => state.user.loading); // Assuming you have loading state in your store
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -18,9 +19,13 @@ function Login() {
         if (email.trim() === "" || password.trim() === "") {
             return;
         }
-        dispatch(requestLogin({ email, password })); 
+        dispatch(authenticateUser({ username: email, password })); // Dispatch authenticateUser
         navigate("/homepage");
     };
+    
+    if (loading) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <Form onSubmit={handleSubmit} className={styles.home}>

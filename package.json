@@ -16,7 +16,7 @@
     "@mui/material": "^5.15.13",
     "@reduxjs/toolkit": "^2.2.1",
     "@rsuite/icons": "^1.0.3",
-    "axios": "^1.6.7",
+    "axios": "^1.6.8",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "cdbreact": "^1.5.18",
@@ -32,6 +32,7 @@
     "react-redux": "^9.1.0",
     "react-router-dom": "^6.22.1",
     "redux": "^5.0.1",
+    "redux-thunk": "^3.1.0",
     "rsuite": "^5.56.0"
   },
   "devDependencies": {
@@ -43,6 +44,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "less": "^4.2.0",
+    "unplugin-auto-import": "^0.17.5",
     "vite": "^5.1.0"
   }
 }

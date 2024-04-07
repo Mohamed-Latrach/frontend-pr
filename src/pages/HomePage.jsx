@@ -1,8 +1,11 @@
 import React from "react";
+import { useSelector } from 'react-redux';
 import Sidebar from "../components/Sidebar";
+import { selectUser } from '../store/userSlice'; // Importing selectUser selector
 import "../partials/HomePage.module.css";
 
 const HomePage = () => {
+    const user = useSelector(selectUser); // Accessing user state from the Redux store
 
     const SidebarItems = [
         { path: "/", icon: "Icon1", title: "Title1" },
@@ -12,7 +15,7 @@ const HomePage = () => {
 
     return (
         <div>
-            <Sidebar items={SidebarItems} />
+            {user && <Sidebar items={SidebarItems} />} {/* Render Sidebar if user is logged in */}
         </div>
     );
 };

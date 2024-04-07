@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import styles from '../partials/Register.module.css'; 
+import styles from '../partials/Register.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { registerUser } from '../store/userActions'; // Import your registerUser action creator
+import { userRegister } from '../store/userActions';
 
 function Register() {
   const [name, setName] = useState('');
@@ -10,18 +10,29 @@ function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [birthdate, setBirthdate] = useState('');
-  const [gender, setGender] = useState(''); 
-  const dispatch = useDispatch(); // Initialize useDispatch hook
+  const [gender, setGender] = useState('');
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (name.trim() === '' || lastName.trim() === '' || email.trim() === '' || password.trim() === '' || birthdate === '' || gender === '') {
       console.log('Please fill in all required fields');
       return;
     }
-    dispatch(registerUser({ name, lastName, email, password, birthdate, gender }));
-    navigate('/HomePage');
+    setLoading(true);
+    setError(null);
+    try {
+      await dispatch(userRegister({ name, lastName, email, password, birthdate, gender }));
+      navigate('/HomePage');
+    } catch (err) {
+      setError(err.message);
+      setLoading(false);
+    }
   };
 
   return (
@@ -60,10 +71,13 @@ function Register() {
               <option value="female">Female</option>
             </select>
           </div>
+          {loading && <div>Loading...</div>}
+          {error && <div>{error}</div>}
           <button type="submit" className={styles.button}>Register</button>
         </form>
       </div>
     </div>
   );
 }
+
 export default Register;

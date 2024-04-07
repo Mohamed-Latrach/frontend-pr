@@ -1,7 +1,6 @@
-
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { Provider, useSelector } from 'react-redux';
 import store from './store/store';
 import Sidebar from './components/Sidebar';
 import Home from './pages/Home';
@@ -18,20 +17,22 @@ import './partials/Home.module.css';
 import './partials/App.css';
 
 function App() {
+  const isAuthenticated = useSelector(state => state.user.isAuthenticated); // Accessing user authentication state
+
   return (
     <Provider store={store}>
       <div className="app">
         <Router>
           {/* Render Sidebar */}
-          <Sidebar />
+          {isAuthenticated && <Sidebar />}
           <Routes>
-            <Route path="/Home" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/homePage" element={<HomePage />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/edit" element={<Edit />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={!isAuthenticated ? <Login /> : <Navigate to="/HomePage" />} />
+            <Route path="/register" element={!isAuthenticated ? <Register /> : <Navigate to="/HomePage" />} />
+            <Route path="/homePage" element={isAuthenticated ? <HomePage /> : <Navigate to="/login" />} />
+            <Route path="/profile" element={isAuthenticated ? <Profile /> : <Navigate to="/login" />} />
+            <Route path="/settings" element={isAuthenticated ? <Settings /> : <Navigate to="/login" />} />
+            <Route path="/edit" element={isAuthenticated ? <Edit /> : <Navigate to="/login" />} />
             {/* Implement logout functionality */}
             <Route path="/logout" element={<Logout />} />
           </Routes>

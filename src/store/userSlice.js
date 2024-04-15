@@ -1,16 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+
 import axios from "axios";
 
-// Async thunk to handle user authentication
 export const authenticateUser = createAsyncThunk(
   'user/authenticateUser',
-  async ({ username, password }, { rejectWithValue }) => {
+  async ({ email, password }, { rejectWithValue }) => {
     try {
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, { username, password });
+      const res = await axios.post(`http://localhost:3000/login`, { email, password });
       return res.data;
     } catch (error) {
-      console.error('Error authenticating user:', error);
-      return rejectWithValue(error);
+      const errorMessage = extractErrorMessage(error);
+      return rejectWithValue(errorMessage);
     }
   }
 );
@@ -24,8 +24,8 @@ export const requestRegister = createAsyncThunk(
       navigate('/login');
       return res.data;
     } catch (error) {
-      console.error('Error registering user:', error);
-      return rejectWithValue(error);
+      const errorMessage = extractErrorMessage(error)
+      return rejectWithValue(errorMessage)
     }
   }
 );
@@ -36,7 +36,7 @@ export const userSlice = createSlice({
   initialState: {
     isAuthenticated: false,
     token: localStorage.getItem('token') || null,
-    details: localStorage.getItem('userDetails') || null,
+    details: JSON.parse(localStorage.getItem('userDetails')) || null,
     isLoading: false,
     error: null
   },
@@ -65,7 +65,7 @@ export const userSlice = createSlice({
       .addCase(authenticateUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isAuthenticated = true;
-        state.token = action.payload.token;
+state.token = action.payload.token;
         state.details = action.payload.user;
         localStorage.setItem('token', action.payload.token);
         localStorage.setItem('userDetails', JSON.stringify(action.payload.user));

@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import userReducer, { authenticateUser } from './userSlice'; // Import authenticateUser as named export
+import userReducer, { authenticateUser } from './userSlice';
 
 const rootReducer = {
   user: userReducer,
@@ -10,6 +10,6 @@ const store = configureStore({
 });
 
 // Dispatch the authenticateUser action to perform authentication
-store.dispatch(authenticateUser({ username: 'example', password: 'password' }));
+store.dispatch(authenticateUser({ email: 'example', password: 'password' }));
 
 export default store;

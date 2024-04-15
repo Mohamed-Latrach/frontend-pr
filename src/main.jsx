@@ -7,8 +7,13 @@ import App from './App';
 
 const root = createRoot(document.getElementById('root')); 
 
-root.render(
-  <Provider store={store}>
-    <App />
-  </Provider>
-);
+try {
+  root.render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+} catch (error) {
+  // Handle rendering errors gracefully
+  console.error('An error occurred while rendering the application:', error);
+}

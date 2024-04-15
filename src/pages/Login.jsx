@@ -10,22 +10,26 @@ function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const loading = useSelector(state => state.user.loading); // Assuming you have loading state in your store
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (email.trim() === "" || password.trim() === "") {
+            setError("Email and password are required");
             return;
         }
-        dispatch(authenticateUser({ username: email, password })); // Dispatch authenticateUser
-        navigate("/homepage");
+        try {
+            // Dispatch authenticateUser action with email and password
+            await dispatch(authenticateUser({ email, password }));
+            // Navigate to homepage on successful login
+            navigate("/homepage");
+        } catch (error) {
+            console.error('Login failed:', error);
+            // Display error message
+            setError("Invalid email or password");
+        }
     };
-    
-    if (loading) {
-        return <div>Loading...</div>;
-    }
 
     return (
         <Form onSubmit={handleSubmit} className={styles.home}>

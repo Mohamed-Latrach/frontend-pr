@@ -1,34 +1,20 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { authenticateUser } from '../store/userSlice'; // Change import to authenticateUser
+import { userLogin } from '../store/userSlice';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'; 
 import styles from '../partials/Login.module.css'; 
 
 function Login() {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const loading = useSelector(state => state.user.loading); // Assuming you have loading state in your store
+    const { loading, error } = useSelector(state => state.user); // Accessing login status from Redux store
+  
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (email.trim() === "" || password.trim() === "") {
-            setError("Email and password are required");
-            return;
-        }
-        try {
-            // Dispatch authenticateUser action with email and password
-            await dispatch(authenticateUser({ email, password }));
-            // Navigate to homepage on successful login
-            navigate("/homepage");
-        } catch (error) {
-            console.error('Login failed:', error);
-            // Display error message
-            setError("Invalid email or password");
-        }
+  
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      dispatch(userLogin({ email, password }));
     };
 
     return (
@@ -55,8 +41,11 @@ function Login() {
                     />
                 </Form.Group>
                 <div className={styles['button-container']}>
-                    <Button variant="primary" type="submit" className={styles.button}>Login</Button>
+                    <Button variant="primary" type="submit" className={styles.button} disabled={loading}>
+                        {loading ? 'Logging in...' : 'Login'}
+                    </Button>
                 </div>
+                {error && <div className={styles.error}>{error}</div>}
             </div>
         </Form>
     );

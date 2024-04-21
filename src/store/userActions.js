@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 // Define the backend URL
-const backendURL = 'http://127.0.0.1:5000';
+const backendURL = 'http://127.0.0.1:3000';
 
 // Async thunk for user login
 export const userLogin = createAsyncThunk(
@@ -17,7 +17,7 @@ export const userLogin = createAsyncThunk(
 
       // Make a POST request to the login endpoint
       const { data } = await axios.post(
-        `${'http://localhost:3000'}/login`,
+        `${'http://localhost:3000'}/api/auth/login`,
         { email, password },
         config
       );
@@ -38,7 +38,7 @@ export const userLogin = createAsyncThunk(
 // Async thunk for user registration
 export const userRegister = createAsyncThunk(
   'auth/register',
-  async ({ name, email, password }, { rejectWithValue }) => {
+  async ({ firstName, lastName, email, password, birthdate, gender }, { rejectWithValue }) => {
     try {
       const config = {
         headers: {
@@ -48,10 +48,10 @@ export const userRegister = createAsyncThunk(
 
       // Make a POST request to the register endpoint
       const { data } = await axios.post(
-        `${'http://localhost:3000'}/api/user/register`,
-        { name, email, password },
+        'http://localhost:3000/api/auth/register',
+        { firstName, lastName, email, password, birthdate, gender },
         config
-      );
+    );
 
       // Return the data received from the server
       return data;

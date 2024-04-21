@@ -1,34 +1,27 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
 import axios from "axios";
 
-export const authenticateUser = createAsyncThunk(
-  'user/authenticateUser',
-  async ({ email, password }, { rejectWithValue }) => {
-    try {
-      const res = await axios.post(`http://localhost:3000/login`, { email, password });
-      return res.data;
-    } catch (error) {
-      const errorMessage = extractErrorMessage(error);
-      return rejectWithValue(errorMessage);
-    }
-  }
-);
-
 // Async thunk to handle user registration
-export const requestRegister = createAsyncThunk(
-  'user/requestRegister',
-  async ({ firstName, lastName, email, password, navigate }, { rejectWithValue }) => {
-    try {
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/register`, { firstName, lastName, email, password });
-      navigate('/login');
-      return res.data;
-    } catch (error) {
-      const errorMessage = extractErrorMessage(error)
-      return rejectWithValue(errorMessage)
-    }
+export const userRegister = createAsyncThunk('user/userRegister', async (userData, { rejectWithValue }) => {
+  try {
+    const response = await axios.post('http://localhost:3000/api/auth/register', userData);
+    return response.data;
+  } catch (error) {
+    const errorMessage = error.response.data.message || 'Failed to register user';
+    return rejectWithValue(errorMessage);
   }
-);
+});
+
+// Async thunk to handle user login
+export const userLogin = createAsyncThunk('user/userLogin', async ({ email, password }, { rejectWithValue }) => {
+  try {
+    const response = await axios.post('http://localhost:3000/api/auth/login', { email, password });
+    return response.data;
+  } catch (error) {
+    const errorMessage = error.response.data.message || 'Failed to login';
+    return rejectWithValue(errorMessage);
+  }
+});
 
 // Define the user slice
 export const userSlice = createSlice({
@@ -41,13 +34,6 @@ export const userSlice = createSlice({
     error: null
   },
   reducers: {
-    login: (state, action) => {
-      state.isAuthenticated = true;
-      state.token = action.payload.token;
-      state.details = action.payload.details;
-      localStorage.setItem('token', action.payload.token);
-      localStorage.setItem('userDetails', JSON.stringify(action.payload.details));
-    },
     logout: (state) => {
       localStorage.removeItem('token');
       localStorage.removeItem('userDetails');
@@ -58,30 +44,30 @@ export const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(authenticateUser.pending, (state) => {
+      .addCase(userLogin.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(authenticateUser.fulfilled, (state, action) => {
+      .addCase(userLogin.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isAuthenticated = true;
-state.token = action.payload.token;
+        state.token = action.payload.token;
         state.details = action.payload.user;
         localStorage.setItem('token', action.payload.token);
         localStorage.setItem('userDetails', JSON.stringify(action.payload.user));
       })
-      .addCase(authenticateUser.rejected, (state, action) => {
+      .addCase(userLogin.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })
-      .addCase(requestRegister.pending, (state) => {
+      .addCase(userRegister.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(requestRegister.fulfilled, (state) => {
+      .addCase(userRegister.fulfilled, (state) => {
         state.isLoading = false;
       })
-      .addCase(requestRegister.rejected, (state, action) => {
+      .addCase(userRegister.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });
@@ -89,7 +75,7 @@ state.token = action.payload.token;
 });
 
 // Export actions
-export const { login, logout } = userSlice.actions;
+export const { logout } = userSlice.actions;
 
 // Export reducer
 export default userSlice.reducer;

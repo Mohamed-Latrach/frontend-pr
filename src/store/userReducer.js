@@ -1,4 +1,4 @@
-import { LOGIN_REQUEST } from '../store/userActions';
+import { userLogin } from '../store/userActions';
 
 const initialState = {
   user: null,
@@ -6,7 +6,7 @@ const initialState = {
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case LOGIN_REQUEST:
+    case userLogin.fulfilled.type: // Use .type to access the type of the action
       return {
         ...state,
         user: action.payload,

@@ -28,7 +28,8 @@ function Login() {
                         placeholder="Email"
                         value={email} 
                         onChange={e => setEmail(e.target.value)} 
-                        required 
+                        required
+                        variant="soft"
                     />
                 </Form.Group>
                 <Form.Group controlId="formBasicPassword" className={styles['input-box']}>

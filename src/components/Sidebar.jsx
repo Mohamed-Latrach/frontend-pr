@@ -20,7 +20,7 @@ function Sidebar() {
     <nav className={styles['main-menu']}> 
       <ul>
         <li>
-          <NavLink to="/" activeClassName="activeClicked">
+          <NavLink to="/HomePage" activeClassName="activeClicked">
             <FaHome className={`${styles['nav-icon']} ${styles['nav-text']}`} />
             <span className={styles['nav-text']}>Home</span>
           </NavLink>
@@ -36,7 +36,7 @@ function Sidebar() {
         <li>
           <NavLink to="/Messages" activeClassName="activeClicked">
             <FaEnvelope className={`${styles['nav-icon']} ${styles['nav-text']}`} />
-            <span className={styles['nav-text']}>Messages</span>
+            <span className={styles['nav-text']}>Notes</span>
           </NavLink>
         </li>
         

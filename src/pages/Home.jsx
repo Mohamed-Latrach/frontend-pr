@@ -19,9 +19,9 @@ const Home = () => {
       <img src="/behance-64ca96ed5caf7.png" alt="Description of the image" className={styles['background-image']} />
       <div className={styles.content}>
         <div className={styles.headline}>
-          <h3>Make</h3>
-          <h3>International</h3>
-          <h3>Friends</h3>
+          <h3>Social</h3>
+          <h3>Networking </h3>
+          <h3>Website</h3>
         </div>
         <div className={styles.header}>
           <h4>NetMates</h4>

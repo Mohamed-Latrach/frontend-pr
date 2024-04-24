@@ -56,6 +56,7 @@
   color: #7453bf;
   font-size: 99px;
   margin: 0;
+  padding:30px;
 }
 
 
@@ -78,7 +79,7 @@
 
 .border-box h2 {
   color: #a9ddff;
-  font-size: 45px;
+  font-size: 60px;
   margin-bottom: 50px;
   text-align: center;
 }

@@ -34,6 +34,11 @@ export const userSlice = createSlice({
     error: null
   },
   reducers: {
+    login: (state, action) => {
+      state.isAuthenticated = true
+      state.token = action.payload.token
+      state.details = action.payload.details
+    },
     logout: (state) => {
       localStorage.removeItem('token');
       localStorage.removeItem('userDetails');
@@ -75,7 +80,7 @@ export const userSlice = createSlice({
 });
 
 // Export actions
-export const { logout } = userSlice.actions;
+export const {login, logout } = userSlice.actions;
 
 // Export reducer
 export default userSlice.reducer;

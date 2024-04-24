@@ -11,12 +11,15 @@
     "proxy": "http://localhost:3000"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.3.6",
     "@babel/runtime": "^7.24.1",
     "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.0",
+    "@emotion/styled": "^11.11.5",
+    "@mui/joy": "^5.0.0-beta.36",
     "@mui/material": "^5.15.13",
     "@reduxjs/toolkit": "^2.2.1",
     "@rsuite/icons": "^1.0.3",
+    "antd": "^5.16.4",
     "axios": "^1.6.8",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",

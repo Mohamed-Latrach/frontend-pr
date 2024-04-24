@@ -1,8 +1,7 @@
 import React from 'react';
 import styles from '../partials/Profile.module.css'
 import { Link } from 'react-router-dom';
-import MyCustomUpload from './MyCustomUpload'; // Import your custom upload component
-import ImageUpload from './ImageUpload';
+import AvatarPickingFile from  './ImageUpload';
 import Textarea from '@mui/joy/Textarea';
 
 function Profile() {
@@ -13,13 +12,16 @@ function Profile() {
         <Link to="/edit">
           <button>Edit</button>
         </Link>
-        <MyCustomUpload /> {/* Include your custom upload component */}
-        <ImageUpload /> {/* Include your custom image upload component */}
+        <div className={styles['top-right']}>
+                  <AvatarPickingFile /> {/* Include your custom image upload component */}
+                </div>
+        <div className={styles['post']}>
+        <h3>What's on your mind:</h3>
         <Textarea
           color="neutral"
           minRows={2}
           variant="outlined"
-        />
+        /></div>
       </div>
     </div>
   );

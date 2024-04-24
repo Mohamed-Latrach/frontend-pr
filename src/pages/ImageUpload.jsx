@@ -1,58 +1,29 @@
-// ImageUpload.jsx
+import React, { useState, useEffect } from 'react';
+import { Avatar } from '@files-ui/react';
+import Cookies from 'js-cookie';
+const imageSrc =
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png';
 
-import React, { useState } from 'react';
-import { Upload, message } from 'antd';
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+const AvatarPickingFile = () => {
+  const [imageSource, setImageSource] = useState(imageSrc);
 
-function ImageUpload() {
-  const [loading, setLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState();
-
-  const handleChange = (info) => {
-    if (info.file.status === 'uploading') {
-      setLoading(true);
-      return;
+  // Load saved image source from local storage on component mount
+  useEffect(() => {
+    const savedImage = Cookies.get('avatarImage');
+    if (savedImage) {
+      setImageSource(savedImage);
     }
-    if (info.file.status === 'done') {
-      // Get the image URL from the response (adjust this part based on your backend)
-      getBase64(info.file.originFileObj, (url) => {
-        setLoading(false);
-        setImageUrl(url);
-      });
-    }
+  }, []);
+
+  const handleChangeSource = (selectedFile) => {
+    setImageSource(selectedFile);
+    // Save the selected image source to local storage
+    Cookies.set('avatarImage', selectedFile, { expires: 365 });
   };
-
-  const beforeUpload = (file) => {
-    // Validate file type and size (customize this part as needed)
-    // ...
-
-    return true; // Return true to allow upload
-  };
-
-  const uploadButton = (
-    <div>
-      {loading ? <LoadingOutlined /> : <PlusOutlined />}
-      <div style={{ marginTop: 8 }}>Upload</div>
-    </div>
-  );
 
   return (
-    <Upload
-      name="avatar"
-      listType="picture-card"
-      className="avatar-uploader"
-      showUploadList={false}
-      action="http://localhost:3000/api/upload" // Adjust the API endpoint
-      beforeUpload={beforeUpload}
-      onChange={handleChange}
-    >
-      {imageUrl ? (
-        <img src={imageUrl} alt="avatar" style={{ width: '100%' }} />
-      ) : (
-        uploadButton
-      )}
-    </Upload>
+    <Avatar src={imageSource} alt="Avatar" variant="circle" onChange={handleChangeSource} />
   );
-}
+};
 
-export default ImageUpload;
+export default AvatarPickingFile;

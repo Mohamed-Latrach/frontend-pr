@@ -12,28 +12,49 @@
   padding: 20px;
   border-radius: 8px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: column;
+  justify-content: flex-start;
   /* Remove height property to allow content to determine height */
 }
 
 .box-sizing h2 {
-  font-size: 20px;
+  font-size: 15px;
   font-family: 'Chakra Petch', sans-serif;
-  margin: 10px 0;
-  padding-bottom: 611px;
+  margin: 4px 0;
   color: aliceblue;
+
 }
+
 /* Style your buttons, custom upload components, and image uploads as needed */
 /* For example: */
 .box-sizing button {
-  top:50%;
   background-color: #0074d9;
   color: white;
   border: none;
-  margin-left: 10px;
-  padding: 10px 20px;
-  border-radius: 4px;
+  margin: 0px 0;
+  padding: 1px 9px;
+  border-radius: 9px;
   cursor: pointer;
-  margin-left: 10px; /* Add spacing between h2 and button */
+}
+
+.top-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  gap: 10px; /* Adjust as needed */
+}
+
+.post {
+  
+  position: absolute;
+  top:20%
+
+
+}
+.post h3{
+  font-size: 18px;
+  font-family: 'Chakra Petch', sans-serif;
+  margin: 10px 0;
+  color: aliceblue;
 }

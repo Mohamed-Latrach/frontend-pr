@@ -12,9 +12,12 @@ import Profile from './pages/Profile';
 import Messages from './pages/Messages';
 import Settings from './pages/Settings';
 import Edit from './pages/Edit';
+import ImageUpload from './pages/ImageUpload';
+import AvatarPickingFile from  './pages/ImageUpload';
 
 import './partials/Home.module.css';
 import './partials/App.css';
+
 
 const AppContainer = ({ isAuthenticated }) => {
   return (
@@ -28,6 +31,7 @@ const AppContainer = ({ isAuthenticated }) => {
           <Route path="/register" element={!isAuthenticated ? <Register /> : <Navigate to="/HomePage" />} />
           <Route path="/homePage" element={isAuthenticated ? <HomePage /> : <Navigate to="/homePage" />} />
           <Route path="/profile" element={isAuthenticated ? <Profile /> : <Navigate to="/login" />} />
+          <Route path="/profile" element={<AvatarPickingFile />} />
           <Route path="/settings" element={isAuthenticated ? <Settings /> : <Navigate to="/login" />} />
           <Route path="/edit" element={isAuthenticated ? <Edit /> : <Navigate to="/login" />} />
           {/* Implement logout functionality */}

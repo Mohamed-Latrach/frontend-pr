@@ -25,6 +25,7 @@
 
 }
 
+
 /* Style your buttons, custom upload components, and image uploads as needed */
 /* For example: */
 .box-sizing button {
@@ -57,4 +58,60 @@
   font-family: 'Chakra Petch', sans-serif;
   margin: 10px 0;
   color: aliceblue;
+}
+
+.content {
+  font-size: 20px;
+  font-family: 'Chakra Petch', sans-serif;
+  margin-top: 20px;
+  margin-left: 170px;
+  color: aliceblue;
+  position: relative;
+}
+
+
+@media only screen and (max-width: 600px) and (min-width: 400px) {
+  .box-sizing {
+    width: 90%;
+    max-width: none; /* Remove max-width */
+    margin: 0 auto;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+  }
+  .box-sizing h2 {
+    position:absolute;
+    left: 150px;
+    top: 10px;
+    font-size: 20px; /* Example: Change font size */
+    color: rgb(255, 255, 255); /* Example: Change font color */
+    /* Add any additional styles you want to apply */
+  }
+  .box-sizing button {
+    position:absolute;
+    top: 15px;
+    left: 350px;
+  }
+  .content {
+    position:absolute;
+    font-size: 20px;
+    left: 0px;
+    font-family: 'Chakra Petch', sans-serif;
+  }
+  .top-right{
+    position:absolute;
+    top: 45px;
+    left: 150px;
+
+  }
+  .post {
+    top: 60%;
+    margin-top: 10px;
+  }
+  .post button{
+    position:absolute;
+    top:119px;
+    left: 50px;
+  }
+}@media only screen and (max-width: 600px) and (min-width: 400px) {
+
 }

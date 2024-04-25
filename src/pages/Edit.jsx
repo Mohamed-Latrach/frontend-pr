@@ -1,6 +1,6 @@
-// Edit.jsx
 import React, { useState } from 'react';
-import axios from 'axios'; // Don't forget to import axios
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 import styles from '../partials/Edit.module.css';
 
@@ -8,19 +8,17 @@ function Edit() {
   const [aboutMe, setAboutMe] = useState('');
   const [username, setUsername] = useState('');
   const [name, setName] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      // Assuming axios.post('/api/profile') returns the updated profile data
-      const updatedProfileData = await axios.post('/api/profile', {
-        aboutMe,
-        username,
-        name,
-      });
-      // Redirect to profile page or handle success
+      await axios.post('http://localhost:3000/api/profile', { aboutMe, username, name });
+      // Store data in local storage
+      localStorage.setItem('profileData', JSON.stringify({ aboutMe, username, name }));
+      navigate('/profile');
     } catch (error) {
-      // Handle error
+      console.log(error);
     }
   };
 
@@ -59,7 +57,7 @@ function Edit() {
               required
             />
           </div>
-          <button type="submit">Submit</button>
+          <button type="submit">Save Changes</button>
         </form>
       </div>
     </div>

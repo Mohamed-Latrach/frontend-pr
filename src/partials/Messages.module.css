@@ -1,0 +1,15 @@
+.box-sizing {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    height: 500px; /* Adjust the width as needed */
+    max-width: 1100px; /* Set a maximum width */
+    background-color: #28274d;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}

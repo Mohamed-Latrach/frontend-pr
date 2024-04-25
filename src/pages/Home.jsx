@@ -24,10 +24,10 @@ const Home = () => {
           <h3>Website</h3>
         </div>
         <div className={styles.header}>
-          <h4>NetMates</h4>
+          <h4>NetPass</h4>
         </div>
         <div className={styles['border-box']}>
-          <h2>NetMates</h2>
+          <h2>NetPass</h2>
           <button className={`${styles.button} ${styles.Login}`} onClick={handleLogin}>Login</button>
           <button className={`${styles.button} ${styles.Register}`} onClick={handleRegister}>Register</button>
         </div>
